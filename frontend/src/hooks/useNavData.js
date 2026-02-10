@@ -19,7 +19,8 @@ export function useNavData(lat, lng, date, prayerMethod) {
         prayer_method: prayerMethod
       });
 
-      const response = await fetch(`/api/v1/dashboard?${params}`);
+      const apiUrl = import.meta.env.PROD ? '/api/v1/dashboard' : '/api/v1/dashboard';
+      const response = await fetch(`${apiUrl}?${params}`);
 
       if (!response.ok) {
         throw new Error(`API error: ${response.status}`);
